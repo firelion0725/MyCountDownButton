@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CountDownTimerButton">
+        <attr name="count_time" format="integer" />
+        <attr name="change_with_selection" format="boolean" />
+        <attr name="normal_string" format="string" />
+        <attr name="count_down_string" format="string" />
+    </declare-styleable>
+</resources>

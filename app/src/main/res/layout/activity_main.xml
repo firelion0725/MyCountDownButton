@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.leo.widget.CountDownTimerButton
+        android:id="@+id/count_down_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_selector_button"
+        app:change_with_selection="true"
+        app:count_down_string="倒计时%1$s秒"
+        app:count_time="5"
+        app:normal_string="发送验证码" />
+
+</android.support.constraint.ConstraintLayout>
