@@ -23,7 +23,7 @@ public class CountDownTimerButton extends AppCompatButton {
     private MyCountDownTimer timer;
 
     private String normalString;
-    private String countDownlString;
+    private String countDownString;
 
     public CountDownTimerButton(Context context) {
         super(context);
@@ -50,7 +50,7 @@ public class CountDownTimerButton extends AppCompatButton {
             countDownSecond = typedArray.getInteger(R.styleable.CountDownTimerButton_count_time, DEFAULT_DOWN_TIME);
             selectionChange = typedArray.getBoolean(R.styleable.CountDownTimerButton_change_with_selection, false);
             normalString = typedArray.getString(R.styleable.CountDownTimerButton_normal_string);
-            countDownlString = typedArray.getString(R.styleable.CountDownTimerButton_count_down_string);
+            countDownString = typedArray.getString(R.styleable.CountDownTimerButton_count_down_string);
             typedArray.recycle();
         }
         timer = new MyCountDownTimer(countDownSecond * 1000, 1000);
@@ -102,7 +102,7 @@ public class CountDownTimerButton extends AppCompatButton {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            String string = String.format(countDownlString, String.valueOf(millisUntilFinished / 1000));
+            String string = String.format(countDownString, String.valueOf(millisUntilFinished / 1000));
             CountDownTimerButton.this.setText(string);
         }
 
