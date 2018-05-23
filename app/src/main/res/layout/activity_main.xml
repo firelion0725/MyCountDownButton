@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_selector_button"
         app:change_with_selection="true"
+        app:change_with_enable="true"
         app:count_down_string="倒计时%1$s秒"
         app:count_time="5"
         app:normal_string="发送验证码" />

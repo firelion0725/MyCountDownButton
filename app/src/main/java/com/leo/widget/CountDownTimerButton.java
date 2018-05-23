@@ -17,7 +17,14 @@ public class CountDownTimerButton extends AppCompatButton {
 
     private final int DEFAULT_DOWN_TIME = 30;
     private int countDownSecond = 30;
+    /**
+     * 是否启动 自动变更选择状态
+     */
     private boolean selectionChange = false;
+    /**
+     * 是否启动 自动变更可用状态
+     */
+    private boolean enableChange = false;
 
     private FinishCallBack finishCallBack;
     private MyCountDownTimer timer;
@@ -39,9 +46,8 @@ public class CountDownTimerButton extends AppCompatButton {
         initCountDownTimerButton(context, attrs);
     }
 
-    @Override
-    public void setOnClickListener(@Nullable OnClickListener l) {
-        super.setOnClickListener(new MyClickListener(l));
+    public void setOnClickListenerAutoStartTime(@Nullable OnClickListener l) {
+        setOnClickListener(new MyClickListener(l));
     }
 
     private void initCountDownTimerButton(Context context, AttributeSet attrs) {
@@ -49,6 +55,7 @@ public class CountDownTimerButton extends AppCompatButton {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CountDownTimerButton);
             countDownSecond = typedArray.getInteger(R.styleable.CountDownTimerButton_count_time, DEFAULT_DOWN_TIME);
             selectionChange = typedArray.getBoolean(R.styleable.CountDownTimerButton_change_with_selection, false);
+            enableChange = typedArray.getBoolean(R.styleable.CountDownTimerButton_change_with_enable, false);
             normalString = typedArray.getString(R.styleable.CountDownTimerButton_normal_string);
             countDownString = typedArray.getString(R.styleable.CountDownTimerButton_count_down_string);
             typedArray.recycle();
@@ -74,6 +81,10 @@ public class CountDownTimerButton extends AppCompatButton {
         public void onClick(View v) {
             if (selectionChange) {
                 CountDownTimerButton.this.setSelected(true);
+            }
+
+            if (enableChange) {
+                CountDownTimerButton.this.setEnabled(false);
             }
             startTimer();
             listener.onClick(v);
@@ -112,6 +123,11 @@ public class CountDownTimerButton extends AppCompatButton {
             if (selectionChange) {
                 CountDownTimerButton.this.setSelected(false);
             }
+
+            if (enableChange) {
+                CountDownTimerButton.this.setEnabled(true);
+            }
+
             if (finishCallBack != null) {
                 finishCallBack.onFinish();
             }
