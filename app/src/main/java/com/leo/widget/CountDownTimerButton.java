@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -119,7 +120,9 @@ public class CountDownTimerButton extends AppCompatButton {
 
         @Override
         public void onFinish() {
-            CountDownTimerButton.this.setText(normalString);
+            if (!TextUtils.isEmpty(normalString)) {
+                CountDownTimerButton.this.setText(normalString);
+            }
             if (selectionChange) {
                 CountDownTimerButton.this.setSelected(false);
             }
