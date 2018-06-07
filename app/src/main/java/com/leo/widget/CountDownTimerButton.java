@@ -61,7 +61,8 @@ public class CountDownTimerButton extends AppCompatButton {
             countDownString = typedArray.getString(R.styleable.CountDownTimerButton_count_down_string);
             typedArray.recycle();
         }
-        timer = new MyCountDownTimer(countDownSecond * 1000, 1000);
+        //间隔设置为1秒 onTick会舍去最后一跳 间隔设置略小于1秒即可
+        timer = new MyCountDownTimer(countDownSecond * 1000, 970);
         CountDownTimerButton.this.setText(normalString);
     }
 
@@ -114,12 +115,16 @@ public class CountDownTimerButton extends AppCompatButton {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            String string = String.format(countDownString, String.valueOf(millisUntilFinished / 1000));
+            //四舍五入获取准确的计时秒数
+            int time = (int) Math.round((double) millisUntilFinished / 1000);
+            String string = String.format(countDownString, String.valueOf((time)));
             CountDownTimerButton.this.setText(string);
         }
 
         @Override
         public void onFinish() {
+            String string = String.format(countDownString, String.valueOf(0));
+            CountDownTimerButton.this.setText(string);
             if (!TextUtils.isEmpty(normalString)) {
                 CountDownTimerButton.this.setText(normalString);
             }
