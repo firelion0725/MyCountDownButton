@@ -154,4 +154,12 @@ public class CountDownTimerButton extends AppCompatButton {
     public void setFinishCallBack(FinishCallBack finishCallBack) {
         this.finishCallBack = finishCallBack;
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        if (timer != null) {
+            timer.cancel();
+        }
+        super.onDetachedFromWindow();
+    }
 }
