@@ -3,6 +3,7 @@ package com.leo.widget;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 /**
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         CountDownTimerButton button = findViewById(R.id.count_down_button);
+        Button resetButton = findViewById(R.id.reset_button);
 //        button.setOnClickListener((v) -> {
 //            ((CountDownTimerButton) v).startTimer();
 //            //用手动设定时 需在finish里重新设定可用 setEnabled(true);
@@ -28,5 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         //如果没用 可以不写finishCallBack
         button.setFinishCallBack(() -> Toast.makeText(MainActivity.this, "倒计时结束", Toast.LENGTH_SHORT).show());
+
+        resetButton.setOnClickListener(v->{
+            button.reset();
+        });
     }
 }

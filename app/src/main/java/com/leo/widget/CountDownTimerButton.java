@@ -162,4 +162,20 @@ public class CountDownTimerButton extends AppCompatButton {
         }
         super.onDetachedFromWindow();
     }
+
+    public void reset() {
+        if (timer != null) {
+            timer.cancel();
+        }
+        if (!TextUtils.isEmpty(normalString)) {
+            CountDownTimerButton.this.setText(normalString);
+        }
+        if (selectionChange) {
+            CountDownTimerButton.this.setSelected(false);
+        }
+
+        if (enableChange) {
+            CountDownTimerButton.this.setEnabled(true);
+        }
+    }
 }
